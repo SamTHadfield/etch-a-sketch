@@ -13,7 +13,7 @@ function grid(numberOfSquares) {
       const column = document.createElement("div");
       column.classList.add("column");
       column.addEventListener("mouseover", () => {
-        column.style.backgroundColor = "#179BAE";
+        column.style.backgroundColor = "#ff8343";
       });
       row.appendChild(column);
     }
