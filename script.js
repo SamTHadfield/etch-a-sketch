@@ -21,7 +21,7 @@ const button = document.createElement("button");
 document.body.insertBefore(button, container);
 button.id = "reset-button";
 button.addEventListener("click", () => {
-  const numberOfSquare = prompt(
+  const numberOfSquares = prompt(
     "How many squares should there be on each side?"
   );
 });
