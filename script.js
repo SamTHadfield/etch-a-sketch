@@ -42,5 +42,5 @@ function resetSquares() {
 // Add h1
 const h1 = document.createElement("h1");
 h1.classList.add("header");
-h1.textContent = "Etch A Sketch!";
+h1.textContent = "Etch A Sketch";
 document.body.insertBefore(h1, button);
