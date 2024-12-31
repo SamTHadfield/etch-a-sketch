@@ -47,15 +47,13 @@ h1.classList.add("header");
 h1.textContent = "Etch A Sketch";
 document.body.insertBefore(h1, button);
 
-// Create extra buttons and add to main-container
-for (let i = 1; i <= 4; i++) {
-  const button = document.createElement("button");
-  button.classList.add("button");
-  button.id = "button-" + [i];
-
-  if (button.id === "button-1" || button.id === "button-2") {
-    mainContainer.insertBefore(button, sketchContainer);
+// Create extra button containers
+for (let i = 1; i < 3; i++) {
+  const buttonContainer = document.createElement("div");
+  buttonContainer.id = "button-container-" + [i];
+  if (i === 1) {
+    mainContainer.insertBefore(buttonContainer, sketchContainer);
   } else {
-    mainContainer.appendChild(button);
+    mainContainer.appendChild(buttonContainer);
   }
 }
