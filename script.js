@@ -39,9 +39,8 @@ function resetSquares() {
   }
 }
 
-// Add h1 - main header
-const header = document.createElement("h1");
-header.id = "main-header";
-header.classList.add("header");
-header.textContent = "Etch A Sketch!";
-document.body.insertBefore(header, button);
+// Add h1
+const h1 = document.createElement("h1");
+h1.classList.add("header");
+h1.textContent = "Etch A Sketch!";
+document.body.insertBefore(h1, button);
