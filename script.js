@@ -1,11 +1,12 @@
 const container = document.querySelector(".container");
+let numberOfSquares = 16;
 
 // Establishing default columns and rows
-for (let i = 0; i < 16; i++) {
+for (let i = 0; i < numberOfSquares; i++) {
   const row = document.createElement("div");
   row.classList.add("row");
 
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < numberOfSquares; i++) {
     const column = document.createElement("div");
     column.classList.add("column");
     column.addEventListener("mouseover", () => {
@@ -21,3 +22,7 @@ const button = document.createElement("button");
 document.body.insertBefore(button, container);
 button.id = "reset-button";
 button.addEventListener("click", resetSquares);
+
+// Haven't committed anything below
+// Construct resetSquares() callback function
+function resetSquares() {}
