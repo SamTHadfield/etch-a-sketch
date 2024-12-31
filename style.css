@@ -33,3 +33,12 @@ body {
 .column {
   flex-grow: 1;
 }
+
+#reset-button {
+  background-color: #ff8343;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #4158a6;
+  height: 30px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
