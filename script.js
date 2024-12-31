@@ -25,7 +25,7 @@ function grid(numberOfSquares) {
 const button = document.createElement("button");
 document.body.insertBefore(button, container);
 button.id = "reset-button";
-button.textContent = "Reset the Grid!";
+button.textContent = "Reset the Grid";
 button.addEventListener("click", resetSquares);
 
 // Construct resetSquares() callback function
