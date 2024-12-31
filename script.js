@@ -15,3 +15,13 @@ for (let i = 0; i < 16; i++) {
   }
   container.appendChild(row);
 }
+
+// Add "reset" button with prompt for user input
+const button = document.createElement("button");
+document.body.insertBefore(button, container);
+button.id = "reset-button";
+button.addEventListener("click", () => {
+  const numberOfSquare = prompt(
+    "How many squares should there be on each side?"
+  );
+});
