@@ -13,7 +13,7 @@ body {
   align-items: center;
 }
 
-#main-header {
+h1 {
   color: #4158a6;
   font-family: Georgia, "Times New Roman", Times, serif;
   text-shadow: 2px 2px #179bae;
