@@ -20,6 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 20px solid #ff8343;
+  outline: 1px solid #4158a6;
   border-radius: 20px;
   margin-top: 20px;
 }
