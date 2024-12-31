@@ -32,6 +32,10 @@ h1 {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+.main-container {
+  display: flex;
+}
+
 .sketch-container {
   height: 500px;
   width: 500px;
