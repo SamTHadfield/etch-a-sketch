@@ -38,3 +38,10 @@ function resetSquares() {
     alert("You entered an incorrect value.");
   }
 }
+
+// Add h1 - main header
+const header = document.createElement("h1");
+header.id = "main-header";
+header.classList.add("header");
+header.textContent = "Etch A Sketch!";
+document.body.insertBefore(header, button);
