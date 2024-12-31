@@ -1,5 +1,7 @@
+const mainContainer = document.querySelector(".main-container");
+
 // Establishing number of rows and columns
-const container = document.querySelector(".container");
+const sketchContainer = document.querySelector(".sketch-container");
 let squares = 16;
 grid(squares);
 
@@ -17,20 +19,20 @@ function grid(numberOfSquares) {
       });
       row.appendChild(column);
     }
-    container.appendChild(row);
+    sketchContainer.appendChild(row);
   }
 }
 
 // Add "reset" button with prompt for user input
 const button = document.createElement("button");
-document.body.insertBefore(button, container);
+document.body.insertBefore(button, mainContainer);
 button.id = "reset-button";
 button.textContent = "Reset the Grid";
 button.addEventListener("click", resetSquares);
 
 // Construct resetSquares() callback function
 function resetSquares() {
-  container.innerHTML = "";
+  sketchContainer.innerHTML = "";
   let squares = prompt("How many squares should there be on each side?");
   if (squares >= 1 && squares <= 100) {
     grid(squares);
