@@ -42,6 +42,14 @@ h1 {
   display: flex;
 }
 
+/* button containers */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
+}
+
 .sketch-container {
   height: 500px;
   width: 500px;
