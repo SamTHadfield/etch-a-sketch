@@ -8,19 +8,22 @@
   <body>
     <header>
       <h1>Etch A Sketch</h1>
-      <button id="reset-button">Reset Grid</button>
     </header>
     <div class="main-container">
-      <div class="button-container" id="button-container-1">
-        <button class="settings-button" id="settings-button-1">Eraser</button>
-        <button class="settings-button" id="settings-button-2">
-          Choose Color
+      <div class="button-container" id="button-container-left">
+        <button class="settings-button" id="color-button">Choose Color</button>
+        <button class="settings-button" id="random-button">
+          Random Colors
+        </button>
+        <button class="settings-button" id="darkening-button">
+          Darkening Affect
         </button>
       </div>
       <div class="sketch-container"></div>
-      <div class="button-container" id="button-container-2">
-        <button class="settings-button" id="settings-button-3">Random</button>
-        <button class="settings-button" id="settings-button-4">Darken</button>
+      <div class="button-container" id="button-container-right">
+        <button class="settings-button" id="eraser-button">Eraser</button>
+        <button class="settings-button" id="clear-button">Clear</button>
+        <button class="settings-button" id="reset-button">Reset Grid</button>
       </div>
     </div>
     <script src="./script.js"></script>
