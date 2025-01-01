@@ -23,11 +23,8 @@ function grid(numberOfSquares) {
   }
 }
 
-// Add "reset" button with prompt for user input
-const button = document.createElement("button");
-document.body.insertBefore(button, mainContainer);
-button.id = "reset-button";
-button.textContent = "Reset the Grid";
+// Add event listener to "reset" button
+const button = document.getElementById("reset-button");
 button.addEventListener("click", resetSquares);
 
 // Construct resetSquares() callback function
@@ -47,7 +44,7 @@ h1.classList.add("header");
 h1.textContent = "Etch A Sketch";
 document.body.insertBefore(h1, button);
 
-// Create extra button containers
+// Create containers for "settingsButtons"
 for (let i = 1; i < 3; i++) {
   const buttonContainer = document.createElement("div");
   buttonContainer.classList.add("button-container");
@@ -57,6 +54,23 @@ for (let i = 1; i < 3; i++) {
   } else {
     mainContainer.appendChild(buttonContainer);
   }
+
+  for (let j = 1; j < 5; j++) {}
 }
 
 // Create four extra buttons (for tomorrow just run these as a nested for loop with the button containers)
+// for (let i = 1; i < 5; i++) {
+//   // Grab button containers
+//   const buttonContainer1 = document.getElementById("button-container-1");
+//   const buttonContainer2 = document.getElementById("button-container-2");
+
+//   // Create 'settings' buttons and append two buttons to each button container
+//   const settingsButtons = document.createElement("button");
+//   settingsButtons.classList.add("settings-buttons");
+//   settingsButtons.id = "settings-button-" + [i];
+//   if (i === 1 || i === 2) {
+//     buttonContainer1.appendChild(settingsButtons);
+//   } else {
+//     buttonContainer2.appendChild(settingsButtons);
+//   }
+// }
