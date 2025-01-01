@@ -37,34 +37,3 @@ function resetSquares() {
     alert("You entered an incorrect value.");
   }
 }
-
-// Create containers for "settingsButtons"
-for (let i = 1; i < 3; i++) {
-  const buttonContainer = document.createElement("div");
-  buttonContainer.classList.add("button-container");
-  buttonContainer.id = "button-container-" + [i];
-  if (i === 1) {
-    mainContainer.insertBefore(buttonContainer, sketchContainer);
-  } else {
-    mainContainer.appendChild(buttonContainer);
-  }
-
-  for (let j = 1; j < 5; j++) {}
-}
-
-// Create four extra buttons (for tomorrow just run these as a nested for loop with the button containers)
-// for (let i = 1; i < 5; i++) {
-//   // Grab button containers
-//   const buttonContainer1 = document.getElementById("button-container-1");
-//   const buttonContainer2 = document.getElementById("button-container-2");
-
-//   // Create 'settings' buttons and append two buttons to each button container
-//   const settingsButtons = document.createElement("button");
-//   settingsButtons.classList.add("settings-buttons");
-//   settingsButtons.id = "settings-button-" + [i];
-//   if (i === 1 || i === 2) {
-//     buttonContainer1.appendChild(settingsButtons);
-//   } else {
-//     buttonContainer2.appendChild(settingsButtons);
-//   }
-// }
