@@ -15,11 +15,13 @@ body {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  margin: 0;
 }
 
 header {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -33,7 +35,6 @@ h1 {
 .main-container {
   display: flex;
   justify-content: space-evenly;
-  /* width: 100%; */
 }
 
 /* button containers */
@@ -48,9 +49,10 @@ h1 {
   color: white;
   border-radius: 5px;
   border: 2px solid #179bae;
-  height: 50px;
+  height: 4rem;
+  width: 8rem;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 25px;
+  font-size: 1.75rem;
 }
 
 .sketch-container {
