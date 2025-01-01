@@ -46,8 +46,7 @@ h1 {
 .button-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 50px;
+  justify-content: space-evenly;
 }
 
 .settings-button {
