@@ -50,6 +50,7 @@ document.body.insertBefore(h1, button);
 // Create extra button containers
 for (let i = 1; i < 3; i++) {
   const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("button-container");
   buttonContainer.id = "button-container-" + [i];
   if (i === 1) {
     mainContainer.insertBefore(buttonContainer, sketchContainer);
@@ -57,3 +58,5 @@ for (let i = 1; i < 3; i++) {
     mainContainer.appendChild(buttonContainer);
   }
 }
+
+// Create four extra buttons (for tomorrow just run these as a nested for loop with the button containers)
