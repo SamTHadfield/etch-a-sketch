@@ -38,12 +38,6 @@ function resetSquares() {
   }
 }
 
-// Add h1
-const h1 = document.createElement("h1");
-h1.classList.add("header");
-h1.textContent = "Etch A Sketch";
-document.body.insertBefore(h1, button);
-
 // Create containers for "settingsButtons"
 for (let i = 1; i < 3; i++) {
   const buttonContainer = document.createElement("div");
