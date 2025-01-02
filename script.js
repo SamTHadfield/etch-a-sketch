@@ -34,23 +34,35 @@ function grid(numberOfSquares) {
 
 // Random Button
 
-// Darken Button
+// "Darken" Button
+const darkenButton = document.getElementById("darken-button");
+darkenButton.addEventListener("click", darken);
 
-// Eraser Button
+// "Eraser" Button
 const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
-// Clear Button
+// "Clear" Button
 const clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clear);
 
-// Reset Button
+// "Reset" Button
 const button = document.getElementById("reset-button");
 button.addEventListener("click", resetSquares);
 
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
+
+// "Darken" Callback Function
+function darken() {
+  const column = document.querySelectorAll(".column");
+  column.forEach((column) => {
+    column.addEventListener("mouseover", () => {
+      column.style.backgroundColor = "black";
+    });
+  });
+}
 
 // "Eraser" Callback Function
 function eraser() {
