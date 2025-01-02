@@ -41,6 +41,8 @@ const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
 // Clear Button
+const clearButton = document.getElementById("clear-button");
+clearButton.addEventListener("click", clear);
 
 // Reset Button
 const button = document.getElementById("reset-button");
@@ -50,9 +52,9 @@ button.addEventListener("click", resetSquares);
 // HELPER FUNCTIONS //
 //////////////////////
 
-// Eraser Callback Function
+// "Eraser" Callback Function
 function eraser() {
-  column = document.querySelectorAll(".column");
+  const column = document.querySelectorAll(".column");
   column.forEach((column) =>
     column.addEventListener("mouseover", () => {
       column.style.backgroundColor = "white";
@@ -60,7 +62,15 @@ function eraser() {
   );
 }
 
-// Reset callback function
+// "Clear" Callback Function
+function clear() {
+  const column = document.querySelectorAll(".column");
+  column.forEach((column) => {
+    column.style.backgroundColor = "white";
+  });
+}
+
+// "Reset" Callback Function
 function resetSquares() {
   sketchContainer.innerHTML = "";
   let squares = prompt("How many squares should there be on each side?");
