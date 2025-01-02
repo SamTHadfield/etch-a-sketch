@@ -23,16 +23,15 @@ function grid(numberOfSquares) {
   }
 }
 
-// const row = document.querySelectorAll(".row");
-// const column = document.querySelectorAll(".column");
-
 /////////////
 // BUTTONS //
 /////////////
 
 // Color Button
 
-// Random Button
+// "Random" Button
+const randomButton = document.getElementById("random-button");
+randomButton.addEventListener("click", random);
 
 // "Darken" Button
 const darkenButton = document.getElementById("darken-button");
@@ -53,6 +52,20 @@ button.addEventListener("click", resetSquares);
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
+
+// "Random" Callback Function
+function random() {
+  const column = document.querySelectorAll(".column");
+  column.forEach((column) => {
+    column.addEventListener("mouseover", () => {
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 256);
+      const blue = Math.floor(Math.random() * 256);
+      const random = `rgb(${red}, ${green}, ${blue})`;
+      column.style.backgroundColor = random;
+    });
+  });
+}
 
 // "Darken" Callback Function
 function darken() {
