@@ -23,11 +23,36 @@ function grid(numberOfSquares) {
   }
 }
 
-// Add event listener to "reset" button
+const row = document.querySelectorAll(".row");
+const column = document.querySelectorAll(".column");
+
+/////////////
+// BUTTONS //
+/////////////
+
+// Color Button
+
+// Random Button
+
+// Darken Button
+
+// Eraser Button
+const eraserButton = document.getElementById("eraser-button");
+eraserButton.addEventListener("click");
+
+// Clear Button
+
+// Reset Button
 const button = document.getElementById("reset-button");
 button.addEventListener("click", resetSquares);
 
-// Construct resetSquares() callback function
+//////////////////////
+// HELPER FUNCTIONS //
+//////////////////////
+
+// Eraser Callback Function
+
+// Reset callback function
 function resetSquares() {
   sketchContainer.innerHTML = "";
   let squares = prompt("How many squares should there be on each side?");
