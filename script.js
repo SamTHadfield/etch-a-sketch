@@ -23,8 +23,8 @@ function grid(numberOfSquares) {
   }
 }
 
-const row = document.querySelectorAll(".row");
-const column = document.querySelectorAll(".column");
+// const row = document.querySelectorAll(".row");
+// const column = document.querySelectorAll(".column");
 
 /////////////
 // BUTTONS //
@@ -38,7 +38,7 @@ const column = document.querySelectorAll(".column");
 
 // Eraser Button
 const eraserButton = document.getElementById("eraser-button");
-eraserButton.addEventListener("click");
+eraserButton.addEventListener("click", eraser);
 
 // Clear Button
 
@@ -51,6 +51,14 @@ button.addEventListener("click", resetSquares);
 //////////////////////
 
 // Eraser Callback Function
+function eraser() {
+  column = document.querySelectorAll(".column");
+  column.forEach((column) =>
+    column.addEventListener("mouseover", () => {
+      column.style.backgroundColor = "white";
+    })
+  );
+}
 
 // Reset callback function
 function resetSquares() {
