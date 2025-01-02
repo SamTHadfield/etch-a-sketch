@@ -59,6 +59,7 @@ function darken() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
+      column.style.opacity = +column.style.opacity + 0.1;
       column.style.backgroundColor = "black";
     });
   });
