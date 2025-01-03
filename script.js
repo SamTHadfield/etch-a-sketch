@@ -61,7 +61,6 @@ function chooseColor() {
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
       column.style.backgroundColor = colorPicker.value;
-      column.style.opacity = 1;
     });
   });
 }
@@ -84,10 +83,16 @@ function random() {
 function darken() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) => {
-    column.addEventListener("mouseover", () => {
-      column.style.opacity = +column.style.opacity + 0.1;
-      column.style.backgroundColor = "black";
-    });
+    if (+column.style.opacity === 1) {
+      column.addEventListener("mouseover", () => {
+        +column.style.opacity === 0;
+      });
+    } else if (+column.style.opacity === 0) {
+      column.addEventListener("mouseover", () => {
+        column.style.opacity = +column.style.opacity + 0.1;
+        column.style.backgroundColor = "black";
+      });
+    }
   });
 }
 
