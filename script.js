@@ -27,7 +27,9 @@ function grid(numberOfSquares) {
 // BUTTONS //
 /////////////
 
-// Color Button
+// "Color" Button
+const colorPicker = document.querySelector("input");
+colorPicker.addEventListener("blur", chooseColor);
 
 // "Random" Button
 const randomButton = document.getElementById("random-button");
@@ -52,6 +54,17 @@ button.addEventListener("click", resetSquares);
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
+
+// "Choose Color" Callback Function
+function chooseColor() {
+  const column = document.querySelectorAll(".column");
+  column.forEach((column) => {
+    column.addEventListener("mouseover", () => {
+      column.style.backgroundColor = colorPicker.value;
+      column.style.opacity = 1;
+    });
+  });
+}
 
 // "Random" Callback Function
 function random() {
