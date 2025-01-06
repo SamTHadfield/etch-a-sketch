@@ -31,41 +31,20 @@ function grid(numberOfSquares) {
 const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
-// "Random" Button
-const randomButton = document.getElementById("random-button");
-randomButton.addEventListener("click", random);
-
-// "Darken" Button
-const darkenButton = document.getElementById("darken-button");
-darkenButton.addEventListener("click", darken);
-
-// "Eraser" Button
-const eraserButton = document.getElementById("eraser-button");
-eraserButton.addEventListener("click", eraser);
-
-// "Clear" Button
-const clearButton = document.getElementById("clear-button");
-clearButton.addEventListener("click", clear);
-
-// "Reset" Button
-const button = document.getElementById("reset-button");
-button.addEventListener("click", resetSquares);
-
-//////////////////////
-// HELPER FUNCTIONS //
-//////////////////////
-
-// "Choose Color" Callback Function
 function chooseColor() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
+      resetOpacityDefault();
       column.style.backgroundColor = colorPicker.value;
     });
   });
 }
 
-// "Random" Callback Function
+// "Random" Button
+const randomButton = document.getElementById("random-button");
+randomButton.addEventListener("click", random);
+
 function random() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) => {
@@ -79,24 +58,24 @@ function random() {
   });
 }
 
-// "Darken" Callback Function
+// "Darken" Button
+const darkenButton = document.getElementById("darken-button");
+darkenButton.addEventListener("click", darken);
+
 function darken() {
-  const column = document.querySelectorAll(".column");
-  column.forEach((column) => {
-    if (+column.style.opacity === 1) {
-      column.addEventListener("mouseover", () => {
-        +column.style.opacity === 0;
-      });
-    } else if (+column.style.opacity === 0) {
-      column.addEventListener("mouseover", () => {
-        column.style.opacity = +column.style.opacity + 0.1;
-        column.style.backgroundColor = "black";
-      });
-    }
+  const columns = document.querySelectorAll(".column");
+  columns.forEach((column) => {
+    column.addEventListener("mouseover", () => {
+      resetOpacityDarken();
+      column.style.opacity = +column.style.opacity + 0.1;
+    });
   });
 }
 
-// "Eraser" Callback Function
+// "Eraser" Button
+const eraserButton = document.getElementById("eraser-button");
+eraserButton.addEventListener("click", eraser);
+
 function eraser() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) =>
@@ -106,7 +85,10 @@ function eraser() {
   );
 }
 
-// "Clear" Callback Function
+// "Clear" Button
+const clearButton = document.getElementById("clear-button");
+clearButton.addEventListener("click", clear);
+
 function clear() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) => {
@@ -114,7 +96,10 @@ function clear() {
   });
 }
 
-// "Reset" Callback Function
+// "Reset" Button
+const button = document.getElementById("reset-button");
+button.addEventListener("click", resetSquares);
+
 function resetSquares() {
   sketchContainer.innerHTML = "";
   let squares = prompt("How many squares should there be on each side?");
@@ -123,4 +108,21 @@ function resetSquares() {
   } else {
     alert("You entered an incorrect value.");
   }
+}
+
+// MISCELLANEOUS FUNCTIONS
+
+// Reset Opacity
+function resetOpacityDefault() {
+  const columns = document.querySelectorAll(".column");
+  columns.forEach((column) => {
+    column.style.opacity = "1";
+  });
+}
+
+function resetOpacityDarken() {
+  const columns = document.querySelectorAll(".column");
+  columns.forEach((column) => {
+    column.style.opacity = ".1";
+  });
 }
