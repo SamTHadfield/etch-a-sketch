@@ -45,6 +45,40 @@ function chooseColor() {
 const randomButton = document.getElementById("random-button");
 randomButton.addEventListener("click", random);
 
+<<<<<<< HEAD
+=======
+// "Darken" Button
+const darkenButton = document.getElementById("darken-button");
+darkenButton.addEventListener("click", darken);
+
+// "Eraser" Button
+const eraserButton = document.getElementById("eraser-button");
+eraserButton.addEventListener("click", eraser);
+
+// "Clear" Button
+const clearButton = document.getElementById("clear-button");
+clearButton.addEventListener("click", clear);
+
+// "Reset" Button
+const button = document.getElementById("reset-button");
+button.addEventListener("click", resetSquares);
+
+//////////////////////
+// HELPER FUNCTIONS //
+//////////////////////
+
+// "Choose Color" Callback Function
+function chooseColor() {
+  const column = document.querySelectorAll(".column");
+  column.forEach((column) => {
+    column.addEventListener("mouseover", () => {
+      column.style.backgroundColor = colorPicker.value;
+    });
+  });
+}
+
+// "Random" Callback Function
+>>>>>>> c9037d79f662cb35ca381eb394413f33be1782ae
 function random() {
   const column = document.querySelectorAll(".column");
   column.forEach((column) => {
@@ -63,12 +97,27 @@ const darkenButton = document.getElementById("darken-button");
 darkenButton.addEventListener("click", darken);
 
 function darken() {
+<<<<<<< HEAD
   const columns = document.querySelectorAll(".column");
   columns.forEach((column) => {
     column.addEventListener("mouseover", () => {
       resetOpacityDarken();
       column.style.opacity = +column.style.opacity + 0.1;
     });
+=======
+  const column = document.querySelectorAll(".column");
+  column.forEach((column) => {
+    if (+column.style.opacity === 1) {
+      column.addEventListener("mouseover", () => {
+        +column.style.opacity === 0;
+      });
+    } else if (+column.style.opacity === 0) {
+      column.addEventListener("mouseover", () => {
+        column.style.opacity = +column.style.opacity + 0.1;
+        column.style.backgroundColor = "black";
+      });
+    }
+>>>>>>> c9037d79f662cb35ca381eb394413f33be1782ae
   });
 }
 
