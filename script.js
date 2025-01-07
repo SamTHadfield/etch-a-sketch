@@ -1,4 +1,5 @@
 const mainContainer = document.querySelector(".main-container");
+let column;
 
 // Establishing number of rows and columns
 const sketchContainer = document.querySelector(".sketch-container");
@@ -23,6 +24,11 @@ function grid(numberOfSquares) {
   }
 }
 
+// Collecting Columns in Node List
+function gatherColumns() {
+  column = document.querySelectorAll(".column");
+}
+
 /////////////
 // BUTTONS //
 /////////////
@@ -32,7 +38,8 @@ const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
-  const column = document.querySelectorAll(".column");
+  // const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
       resetOpacityDefault();
@@ -45,42 +52,9 @@ function chooseColor() {
 const randomButton = document.getElementById("random-button");
 randomButton.addEventListener("click", random);
 
-<<<<<<< HEAD
-=======
-// "Darken" Button
-const darkenButton = document.getElementById("darken-button");
-darkenButton.addEventListener("click", darken);
-
-// "Eraser" Button
-const eraserButton = document.getElementById("eraser-button");
-eraserButton.addEventListener("click", eraser);
-
-// "Clear" Button
-const clearButton = document.getElementById("clear-button");
-clearButton.addEventListener("click", clear);
-
-// "Reset" Button
-const button = document.getElementById("reset-button");
-button.addEventListener("click", resetSquares);
-
-//////////////////////
-// HELPER FUNCTIONS //
-//////////////////////
-
-// "Choose Color" Callback Function
-function chooseColor() {
-  const column = document.querySelectorAll(".column");
-  column.forEach((column) => {
-    column.addEventListener("mouseover", () => {
-      column.style.backgroundColor = colorPicker.value;
-    });
-  });
-}
-
-// "Random" Callback Function
->>>>>>> c9037d79f662cb35ca381eb394413f33be1782ae
 function random() {
-  const column = document.querySelectorAll(".column");
+  // const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
       const red = Math.floor(Math.random() * 256);
@@ -97,27 +71,13 @@ const darkenButton = document.getElementById("darken-button");
 darkenButton.addEventListener("click", darken);
 
 function darken() {
-<<<<<<< HEAD
-  const columns = document.querySelectorAll(".column");
-  columns.forEach((column) => {
+  // const columns = document.querySelectorAll(".column");
+  gatherColumns();
+  column.forEach((column) => {
     column.addEventListener("mouseover", () => {
       resetOpacityDarken();
       column.style.opacity = +column.style.opacity + 0.1;
     });
-=======
-  const column = document.querySelectorAll(".column");
-  column.forEach((column) => {
-    if (+column.style.opacity === 1) {
-      column.addEventListener("mouseover", () => {
-        +column.style.opacity === 0;
-      });
-    } else if (+column.style.opacity === 0) {
-      column.addEventListener("mouseover", () => {
-        column.style.opacity = +column.style.opacity + 0.1;
-        column.style.backgroundColor = "black";
-      });
-    }
->>>>>>> c9037d79f662cb35ca381eb394413f33be1782ae
   });
 }
 
@@ -126,7 +86,7 @@ const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
 function eraser() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((column) =>
     column.addEventListener("mouseover", () => {
       column.style.backgroundColor = "white";
@@ -139,7 +99,7 @@ const clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clear);
 
 function clear() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((column) => {
     column.style.backgroundColor = "white";
   });
@@ -163,15 +123,15 @@ function resetSquares() {
 
 // Reset Opacity
 function resetOpacityDefault() {
-  const columns = document.querySelectorAll(".column");
-  columns.forEach((column) => {
+  gatherColumns();
+  column.forEach((column) => {
     column.style.opacity = "1";
   });
 }
 
 function resetOpacityDarken() {
-  const columns = document.querySelectorAll(".column");
-  columns.forEach((column) => {
+  gatherColumns();
+  column.forEach((column) => {
     column.style.opacity = ".1";
   });
 }
