@@ -27,7 +27,7 @@ function grid(numberOfSquares) {
 // BUTTONS //
 /////////////
 
-// "Color" Button
+//"Color" Button
 const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
