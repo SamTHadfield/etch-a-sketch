@@ -34,12 +34,13 @@ function addMouseOverListener(color, mode = "color") {
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       if (mode === "color") {
-        resetOpacityDefault();
-        col.style.backgroundColor = color;
+        setColumnColor(col, color);
       } else if (mode === "random") {
         resetOpacityDefault();
-        const random = generateRandomColor();
-        col.style.backgroundColor = random;
+        const randomColor = generateRandomColor();
+        col.style.backgroundColor = randomColor;
+      } else if (mode === "darken") {
+        resetOpacityDarken();
       }
     });
   });
@@ -49,13 +50,19 @@ function addMouseOverListener(color, mode = "color") {
 // BUTTONS //
 /////////////
 
-//"Color" Button
+////////////////////
+// "Color" Button //
+///////////////////
 const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
   gatherColumns();
   addMouseOverListener(colorPicker.value, "color");
+}
+
+function setColumnColor(column, color) {
+  column.style.backgroundColor = color;
 }
 
 // "Random" Button
@@ -81,13 +88,31 @@ darkenButton.addEventListener("click", darken);
 
 function darken() {
   gatherColumns();
-  column.forEach((column) => {
-    column.addEventListener("mouseover", () => {
-      resetOpacityDarken();
-      column.style.opacity = +column.style.opacity + 0.1;
+  addMouseOverListener("black", "darken");
+}
+
+function resetOpacityDarken() {
+  column.forEach((col) => {
+    col.addEventListener("mouseover", () => {
+      if (col.style.opacity === "1") {
+        col.style.opacity = "0.1";
+        const opacity = col.style.opacity;
+        return opacity;
+      }
     });
   });
 }
+
+function zeroOpacity() {
+  column.style.opacity = "0";
+  return;
+}
+
+// column.forEach((column) => {
+//   column.addEventListener("mouseover", () => {
+//     column.style.opacity = "0";
+//   });
+// });
 
 // "Eraser" Button
 const eraserButton = document.getElementById("eraser-button");
@@ -131,15 +156,9 @@ function resetSquares() {
 
 // Reset Opacity
 function resetOpacityDefault() {
-  gatherColumns();
   column.forEach((column) => {
-    column.style.opacity = "1";
-  });
-}
-
-function resetOpacityDarken() {
-  gatherColumns();
-  column.forEach((column) => {
-    column.style.opacity = ".1";
+    column.addEventListener("mouseover", () => {
+      column.style.opacity = "1";
+    });
   });
 }
