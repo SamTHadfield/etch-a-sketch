@@ -29,6 +29,18 @@ function gatherColumns() {
   column = document.querySelectorAll(".column");
 }
 
+// Mouse Over Event Listener
+function addMouseOverListener(color, mode = "color") {
+  column.forEach((col) => {
+    col.addEventListener("mouseover", () => {
+      if (mode === "color") {
+        resetOpacityDefault();
+        col.style.backgroundColor = color;
+      }
+    });
+  });
+}
+
 /////////////
 // BUTTONS //
 /////////////
@@ -38,14 +50,8 @@ const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
-  // const column = document.querySelectorAll(".column");
   gatherColumns();
-  column.forEach((column) => {
-    column.addEventListener("mouseover", () => {
-      resetOpacityDefault();
-      column.style.backgroundColor = colorPicker.value;
-    });
-  });
+  addMouseOverListener(colorPicker.value);
 }
 
 // "Random" Button
@@ -53,7 +59,6 @@ const randomButton = document.getElementById("random-button");
 randomButton.addEventListener("click", random);
 
 function random() {
-  // const column = document.querySelectorAll(".column");
   gatherColumns();
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
@@ -71,7 +76,6 @@ const darkenButton = document.getElementById("darken-button");
 darkenButton.addEventListener("click", darken);
 
 function darken() {
-  // const columns = document.querySelectorAll(".column");
   gatherColumns();
   column.forEach((column) => {
     column.addEventListener("mouseover", () => {
