@@ -37,8 +37,7 @@ function addMouseOverListener(color, mode = "color") {
         setColumnColor(col, color);
       } else if (mode === "random") {
         resetOpacityDefault();
-        const randomColor = generateRandomColor();
-        col.style.backgroundColor = randomColor;
+        setRandomColor(col);
       } else if (mode === "darken") {
         resetOpacityDarken();
       }
@@ -65,7 +64,9 @@ function setColumnColor(column, color) {
   column.style.backgroundColor = color;
 }
 
-// "Random" Button
+//////////////////////
+// "Random" Button //
+/////////////////////
 const randomButton = document.getElementById("random-button");
 randomButton.addEventListener("click", random);
 
@@ -80,6 +81,11 @@ function generateRandomColor() {
   const blue = Math.floor(Math.random() * 256);
   const random = `rgb(${red}, ${green}, ${blue})`;
   return random;
+}
+
+function setRandomColor(column) {
+  const randomColor = generateRandomColor();
+  column.style.backgroundColor = randomColor;
 }
 
 // "Darken" Button
