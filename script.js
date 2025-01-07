@@ -36,6 +36,10 @@ function addMouseOverListener(color, mode = "color") {
       if (mode === "color") {
         resetOpacityDefault();
         col.style.backgroundColor = color;
+      } else if (mode === "random") {
+        resetOpacityDefault();
+        const random = generateRandomColor();
+        col.style.backgroundColor = random;
       }
     });
   });
@@ -51,7 +55,7 @@ colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
   gatherColumns();
-  addMouseOverListener(colorPicker.value);
+  addMouseOverListener(colorPicker.value, "color");
 }
 
 // "Random" Button
@@ -60,15 +64,15 @@ randomButton.addEventListener("click", random);
 
 function random() {
   gatherColumns();
-  column.forEach((column) => {
-    column.addEventListener("mouseover", () => {
-      const red = Math.floor(Math.random() * 256);
-      const green = Math.floor(Math.random() * 256);
-      const blue = Math.floor(Math.random() * 256);
-      const random = `rgb(${red}, ${green}, ${blue})`;
-      column.style.backgroundColor = random;
-    });
-  });
+  addMouseOverListener(null, "random");
+}
+
+function generateRandomColor() {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  const random = `rgb(${red}, ${green}, ${blue})`;
+  return random;
 }
 
 // "Darken" Button
