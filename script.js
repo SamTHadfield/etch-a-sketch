@@ -144,13 +144,26 @@ button.addEventListener("click", resetSquares);
 
 function resetSquares() {
   sketchContainer.innerHTML = "";
-  let squares = prompt("How many squares should there be on each side?");
-  if (squares >= 1 && squares <= 100) {
-    grid(squares);
-  } else {
-    alert("You entered an incorrect value.");
+  let squares;
+
+  while (true) {
+    squares = prompt(
+      "How many squares should there be on each side? Please enter a number between 1 and 100."
+    );
+    if (squares >= 1 && squares <= 100) {
+      grid(squares);
+      break;
+    }
+    alert("Please enter a number between 1 and 100.");
   }
 }
+
+// let squares = prompt("How many squares should there be on each side?");
+// if (squares >= 1 && squares <= 100) {
+//   grid(squares);
+// } else {
+//   alert("You entered an incorrect value.");
+// }
 
 // MISCELLANEOUS FUNCTIONS
 
