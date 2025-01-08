@@ -34,12 +34,14 @@ function addMouseOverListener(color, mode = "color") {
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       if (mode === "color") {
+        resetOpacityDefault();
         setColumnColor(col, color);
       } else if (mode === "random") {
-        resetOpacityDefault();
         setRandomColor(col);
       } else if (mode === "darken") {
-        resetOpacityDarken();
+        darkenColumn(col);
+      } else if (mode === "eraser") {
+        eraseColumnColor(col, color);
       }
     });
   });
@@ -88,7 +90,9 @@ function setRandomColor(column) {
   column.style.backgroundColor = randomColor;
 }
 
-// "Darken" Button
+/////////////////////
+// "Darken" Button //
+/////////////////////
 const darkenButton = document.getElementById("darken-button");
 darkenButton.addEventListener("click", darken);
 
@@ -97,22 +101,7 @@ function darken() {
   addMouseOverListener("black", "darken");
 }
 
-function resetOpacityDarken() {
-  column.forEach((col) => {
-    col.addEventListener("mouseover", () => {
-      if (col.style.opacity === "1") {
-        col.style.opacity = "0.1";
-        const opacity = col.style.opacity;
-        return opacity;
-      }
-    });
-  });
-}
-
-function zeroOpacity() {
-  column.style.opacity = "0";
-  return;
-}
+function darkenColumn() {}
 
 // column.forEach((column) => {
 //   column.addEventListener("mouseover", () => {
@@ -121,16 +110,17 @@ function zeroOpacity() {
 // });
 
 // "Eraser" Button
+// Start here tomorrow (01/08)
 const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
 function eraser() {
   gatherColumns();
-  column.forEach((column) =>
-    column.addEventListener("mouseover", () => {
-      column.style.backgroundColor = "white";
-    })
-  );
+  addMouseOverListener("revert", "eraser");
+}
+
+function eraseColumnColor(column, color) {
+  column.style.backgroundColor = color;
 }
 
 // "Clear" Button
