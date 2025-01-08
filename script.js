@@ -129,8 +129,12 @@ clearButton.addEventListener("click", clear);
 
 function clear() {
   gatherColumns();
+  clearSketchPad();
+}
+
+function clearSketchPad() {
   column.forEach((column) => {
-    column.style.backgroundColor = "white";
+    column.style.backgroundColor = "revert";
   });
 }
 
