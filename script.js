@@ -17,6 +17,7 @@ function grid(numberOfSquares) {
       column.classList.add("column");
       column.addEventListener("mouseover", () => {
         column.style.backgroundColor = "#ff8343";
+        // console.log(column.style.opacity);
       });
       row.appendChild(column);
     }
@@ -29,17 +30,20 @@ function gatherColumns() {
   column = document.querySelectorAll(".column");
 }
 
-// Mouse Over Event Listener
+///////////////////////////////
+// Mouse Over Event Listener //
+///////////////////////////////
 function addMouseOverListener(color, mode = "color") {
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       if (mode === "color") {
-        resetOpacityDefault();
+        resetOpacityDefault(col);
         setColumnColor(col, color);
       } else if (mode === "random") {
+        resetOpacityDefault(col);
         setRandomColor(col);
       } else if (mode === "darken") {
-        darkenColumn(col);
+        manipulateOpacity(col, color);
       } else if (mode === "eraser") {
         eraseColumnColor(col, color);
       }
@@ -88,6 +92,7 @@ function generateRandomColor() {
 function setRandomColor(column) {
   const randomColor = generateRandomColor();
   column.style.backgroundColor = randomColor;
+  console.log(column.style.opacity);
 }
 
 /////////////////////
@@ -101,16 +106,16 @@ function darken() {
   addMouseOverListener("black", "darken");
 }
 
-function darkenColumn() {}
+function manipulateOpacity(column, color) {
+  setColumnColor(column, color);
+  if (column.style.opacity <= 0.9) {
+    column.style.opacity = +column.style.opacity + 0.1;
+  }
+}
 
-// column.forEach((column) => {
-//   column.addEventListener("mouseover", () => {
-//     column.style.opacity = "0";
-//   });
-// });
-
-// "Eraser" Button
-// Start here tomorrow (01/08)
+//////////////////////
+// "Eraser" Button //
+/////////////////////
 const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
@@ -138,7 +143,9 @@ function clearSketchPad() {
   });
 }
 
-// "Reset" Button
+/////////////////////
+// "Reset" Button //
+////////////////////
 const button = document.getElementById("reset-button");
 button.addEventListener("click", resetSquares);
 
@@ -158,20 +165,10 @@ function resetSquares() {
   }
 }
 
-// let squares = prompt("How many squares should there be on each side?");
-// if (squares >= 1 && squares <= 100) {
-//   grid(squares);
-// } else {
-//   alert("You entered an incorrect value.");
-// }
-
 // MISCELLANEOUS FUNCTIONS
 
 // Reset Opacity
-function resetOpacityDefault() {
-  column.forEach((column) => {
-    column.addEventListener("mouseover", () => {
-      column.style.opacity = "1";
-    });
-  });
+function resetOpacityDefault(column) {
+  column.style.removeProperty("opacity");
+  // console.log(column.style.opacity);
 }
