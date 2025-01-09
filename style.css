@@ -49,7 +49,7 @@ h1 {
   color: white;
   border-radius: 1.5rem;
   border: 0.25rem solid #179bae;
-  height: 4rem;
+  height: 5rem;
   width: 8rem;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1.75rem;
@@ -74,4 +74,22 @@ h1 {
 
 .column {
   flex-grow: 1;
+}
+
+#color-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3px;
+}
+
+#color-picker {
+  background-color: #179bae;
+  border: none;
+  border-radius: 10%;
+  padding: 0px;
+  width: 45px;
+  height: 20px;
+  margin-top: 2px;
 }
