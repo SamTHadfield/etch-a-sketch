@@ -1,5 +1,4 @@
 const mainContainer = document.querySelector(".main-container");
-let column;
 
 // Establishing number of rows and columns
 const sketchContainer = document.querySelector(".sketch-container");
@@ -25,32 +24,6 @@ function grid(numberOfSquares) {
   }
 }
 
-// Collecting Columns in Node List
-function gatherColumns() {
-  column = document.querySelectorAll(".column");
-}
-
-///////////////////////////////
-// Mouse Over Event Listener //
-///////////////////////////////
-function addMouseOverListener(color, mode = "color") {
-  column.forEach((col) => {
-    col.addEventListener("mouseover", () => {
-      if (mode === "color") {
-        resetOpacityDefault(col);
-        setColumnColor(col, color);
-      } else if (mode === "random") {
-        resetOpacityDefault(col);
-        setRandomColor(col);
-      } else if (mode === "darken") {
-        manipulateOpacity(col, color);
-      } else if (mode === "eraser") {
-        eraseColumnColor(col, color);
-      }
-    });
-  });
-}
-
 /////////////
 // BUTTONS //
 /////////////
@@ -58,27 +31,33 @@ function addMouseOverListener(color, mode = "color") {
 ////////////////////
 // "Color" Button //
 ///////////////////
+
 const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
-  gatherColumns();
-  addMouseOverListener(colorPicker.value, "color");
-}
-
-function setColumnColor(column, color) {
-  column.style.backgroundColor = color;
+  const column = document.querySelectorAll(".column");
+  column.forEach((col) => {
+    col.addEventListener("mouseover", () => {
+      col.style.backgroundColor = colorPicker.value;
+    });
+  });
 }
 
 //////////////////////
 // "Random" Button //
 /////////////////////
 const randomButton = document.getElementById("random-button");
-randomButton.addEventListener("click", random);
+randomButton.addEventListener("click", randomColor);
 
-function random() {
-  gatherColumns();
-  addMouseOverListener(null, "random");
+function randomColor() {
+  const column = document.querySelectorAll(".column");
+  column.forEach((col) => {
+    col.addEventListener("mouseover", () => {
+      const random = generateRandomColor();
+      col.style.backgroundColor = random;
+    });
+  });
 }
 
 function generateRandomColor() {
@@ -89,12 +68,6 @@ function generateRandomColor() {
   return random;
 }
 
-function setRandomColor(column) {
-  const randomColor = generateRandomColor();
-  column.style.backgroundColor = randomColor;
-  console.log(column.style.opacity);
-}
-
 /////////////////////
 // "Darken" Button //
 /////////////////////
@@ -102,15 +75,13 @@ const darkenButton = document.getElementById("darken-button");
 darkenButton.addEventListener("click", darken);
 
 function darken() {
-  gatherColumns();
-  addMouseOverListener("black", "darken");
-}
-
-function manipulateOpacity(column, color) {
-  setColumnColor(column, color);
-  if (column.style.opacity <= 0.9) {
-    column.style.opacity = +column.style.opacity + 0.1;
-  }
+  const column = document.querySelectorAll(".column");
+  column.forEach((col) => {
+    col.addEventListener("mouseover", () => {
+      col.style.opacity = +col.style.opacity + 0.1;
+      col.style.backgroundColor = "black";
+    });
+  });
 }
 
 //////////////////////
@@ -120,12 +91,12 @@ const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
 function eraser() {
-  gatherColumns();
-  addMouseOverListener("revert", "eraser");
-}
-
-function eraseColumnColor(column, color) {
-  column.style.backgroundColor = color;
+  const column = document.querySelectorAll(".column");
+  column.forEach((col) => {
+    col.addEventListener("mouseover", () => {
+      col.style.removeProperty("background-color");
+    });
+  });
 }
 
 // "Clear" Button
@@ -133,13 +104,9 @@ const clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clear);
 
 function clear() {
-  gatherColumns();
-  clearSketchPad();
-}
-
-function clearSketchPad() {
-  column.forEach((column) => {
-    column.style.backgroundColor = "revert";
+  const column = document.querySelectorAll(".column");
+  column.forEach((col) => {
+    col.removeAttribute("style");
   });
 }
 
@@ -163,12 +130,4 @@ function resetSquares() {
     }
     alert("Please enter a number between 1 and 100.");
   }
-}
-
-// MISCELLANEOUS FUNCTIONS
-
-// Reset Opacity
-function resetOpacityDefault(column) {
-  column.style.removeProperty("opacity");
-  // console.log(column.style.opacity);
 }
