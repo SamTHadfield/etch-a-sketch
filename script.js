@@ -1,4 +1,5 @@
 const mainContainer = document.querySelector(".main-container");
+let column;
 
 // Establishing number of rows and columns
 const sketchContainer = document.querySelector(".sketch-container");
@@ -16,12 +17,16 @@ function grid(numberOfSquares) {
       column.classList.add("column");
       column.addEventListener("mouseover", () => {
         column.style.backgroundColor = "#ff8343";
-        // console.log(column.style.opacity);
       });
       row.appendChild(column);
     }
     sketchContainer.appendChild(row);
   }
+}
+
+// MISC. FUNCTIONS
+function gatherColumns() {
+  column = document.querySelectorAll(".column");
 }
 
 /////////////
@@ -36,7 +41,7 @@ const colorPicker = document.querySelector("input");
 colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       col.style.backgroundColor = colorPicker.value;
@@ -51,11 +56,12 @@ const randomButton = document.getElementById("random-button");
 randomButton.addEventListener("click", randomColor);
 
 function randomColor() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       const random = generateRandomColor();
       col.style.backgroundColor = random;
+      console.log(col.style.opacity);
     });
   });
 }
@@ -75,11 +81,12 @@ const darkenButton = document.getElementById("darken-button");
 darkenButton.addEventListener("click", darken);
 
 function darken() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       col.style.opacity = +col.style.opacity + 0.1;
       col.style.backgroundColor = "black";
+      console.log(col.style.opacity);
     });
   });
 }
@@ -91,7 +98,7 @@ const eraserButton = document.getElementById("eraser-button");
 eraserButton.addEventListener("click", eraser);
 
 function eraser() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((col) => {
     col.addEventListener("mouseover", () => {
       col.style.removeProperty("background-color");
@@ -104,7 +111,7 @@ const clearButton = document.getElementById("clear-button");
 clearButton.addEventListener("click", clear);
 
 function clear() {
-  const column = document.querySelectorAll(".column");
+  gatherColumns();
   column.forEach((col) => {
     col.removeAttribute("style");
   });
