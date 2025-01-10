@@ -143,6 +143,7 @@ function eraser() {
   column.forEach((col) => {
     col.addEventListener("mouseover", handleMouseover);
   });
+  currentMode = handleMouseover;
 }
 
 // "Clear" Button
