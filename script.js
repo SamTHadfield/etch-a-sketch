@@ -140,9 +140,7 @@ function eraser() {
   };
 
   // Create New Mouseover
-  column.forEach((col) => {
-    col.addEventListener("mouseover", handleMouseover);
-  });
+  column.forEach((col) => col.addEventListener("mouseover", handleMouseover));
   currentMode = handleMouseover;
 }
 
