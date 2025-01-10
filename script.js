@@ -1,5 +1,6 @@
 const mainContainer = document.querySelector(".main-container");
 let column;
+let currentMode = null;
 
 // Establishing number of rows and columns
 const sketchContainer = document.querySelector(".sketch-container");
@@ -15,9 +16,12 @@ function grid(numberOfSquares) {
     for (let i = 0; i < numberOfSquares; i++) {
       const column = document.createElement("div");
       column.classList.add("column");
-      column.addEventListener("mouseover", () => {
-        column.style.backgroundColor = "#ff8343";
-      });
+      const handleMouseover = (event) => {
+        const col = event.target;
+        col.style.backgroundColor = "#ff8343";
+      };
+      column.addEventListener("mouseover", handleMouseover);
+      currentMode = handleMouseover;
       row.appendChild(column);
     }
     sketchContainer.appendChild(row);
@@ -27,6 +31,13 @@ function grid(numberOfSquares) {
 // MISC. FUNCTIONS
 function gatherColumns() {
   column = document.querySelectorAll(".column");
+}
+
+//Remove Current Mode Listener
+function removeCurrentModeListener() {
+  column.forEach((col) => {
+    if (currentMode) col.removeEventListener("mouseover", currentMode);
+  });
 }
 
 /////////////
@@ -42,11 +53,20 @@ colorPicker.addEventListener("blur", chooseColor);
 
 function chooseColor() {
   gatherColumns();
+  removeCurrentModeListener();
+
+  // Handler Function
+  const handleMouseover = (event) => {
+    const col = event.target;
+    col.style.removeProperty("opacity");
+    col.style.backgroundColor = colorPicker.value;
+  };
+
+  // Create Mouseover
   column.forEach((col) => {
-    col.addEventListener("mouseover", () => {
-      col.style.backgroundColor = colorPicker.value;
-    });
+    col.addEventListener("mouseover", handleMouseover);
   });
+  currentMode = handleMouseover;
 }
 
 //////////////////////
@@ -57,13 +77,19 @@ randomButton.addEventListener("click", randomColor);
 
 function randomColor() {
   gatherColumns();
-  column.forEach((col) => {
-    col.addEventListener("mouseover", () => {
-      const random = generateRandomColor();
-      col.style.backgroundColor = random;
-      console.log(col.style.opacity);
-    });
-  });
+  removeCurrentModeListener();
+
+  // Define handler
+  const handleMouseover = (event) => {
+    const col = event.target;
+    col.style.removeProperty("opacity");
+    const random = generateRandomColor();
+    col.style.backgroundColor = random;
+    console.log(col.style.opacity);
+  };
+
+  column.forEach((col) => col.addEventListener("mouseover", handleMouseover));
+  currentMode = handleMouseover;
 }
 
 function generateRandomColor() {
@@ -82,13 +108,19 @@ darkenButton.addEventListener("click", darken);
 
 function darken() {
   gatherColumns();
-  column.forEach((col) => {
-    col.addEventListener("mouseover", () => {
-      col.style.opacity = +col.style.opacity + 0.1;
-      col.style.backgroundColor = "black";
-      console.log(col.style.opacity);
-    });
-  });
+  removeCurrentModeListener();
+
+  // Define handler
+  const handleMouseover = (event) => {
+    const col = event.target;
+    col.style.opacity = Math.min(+col.style.opacity + 0.1 || 0.1, 1);
+    col.style.backgroundColor = "black";
+    console.log(col.style.opacity);
+  };
+
+  // Add New Mouseover Listener
+  column.forEach((col) => col.addEventListener("mouseover", handleMouseover));
+  currentMode = handleMouseover;
 }
 
 //////////////////////
@@ -99,10 +131,17 @@ eraserButton.addEventListener("click", eraser);
 
 function eraser() {
   gatherColumns();
+  removeCurrentModeListener();
+
+  // Handle Mouseover Events
+  const handleMouseover = (event) => {
+    const col = event.target;
+    col.removeAttribute("style");
+  };
+
+  // Create New Mouseover
   column.forEach((col) => {
-    col.addEventListener("mouseover", () => {
-      col.style.removeProperty("background-color");
-    });
+    col.addEventListener("mouseover", handleMouseover);
   });
 }
 
